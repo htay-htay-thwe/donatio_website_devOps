@@ -39,18 +39,18 @@ jobs:
 
       - name: Build Django Backend Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/donatio-backend ./donatio-django
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/donatio:backend_latest ./donatio-django
 
       - name: Build Chatbot Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/donatio-chatbot ./donatio-chatbot
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/donatio:chatbot_latest ./donatio-chatbot
 
       # - name: Build KPay Image
       #   run: |
       #     docker build -t ${{ secrets.DOCKER_USERNAME }}/donatio-kpay ./donatio-kpay
       - name: Push All Images to DockerHub
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/donatio-backend
-          docker push ${{ secrets.DOCKER_USERNAME }}/donatio-chatbot
+          docker push ${{ secrets.DOCKER_USERNAME }}/donatio:backend_latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/donatio:chatbot_latest
 
         # docker push ${{ secrets.DOCKER_USERNAME }}/donatio-kpay
