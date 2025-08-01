@@ -23,6 +23,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: DOCKER_USERNAME
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
