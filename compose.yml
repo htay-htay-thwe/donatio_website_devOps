@@ -39,15 +39,15 @@ services:
     depends_on: 
       - db
 
-#   donatio_kpay:
-#     build: ./donatio-kpay
-#     container_name: donatio-kpay
-#     ports:
-#       - "8002:8002"
-#     volumes:
-#       - ./donatio-kpay:/app
-#     depends_on: 
-#       - db
+  donatio_kpay:
+    build: ./donatio-kpay
+    container_name: donatio-kpay
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./donatio-kpay:/app
+    depends_on: 
+      - db
       
 volumes:
   postgres_data:

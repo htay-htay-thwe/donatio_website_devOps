@@ -1,24 +1,24 @@
 name: Docker CI
 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
 # on:
 #   push:
-#     paths:
-#       - "donatio-django/**"
-#       - "donatio-chatbot/**"
-#       - "donatio-kpay/**"
-#       - "docker-compose.yml"
+#     branches: ["main"]
 #   pull_request:
-#     paths:
-#       - "donatio-django/**"
-#       - "donatio-chatbot/**"
-#       - "donatio-kpay/**"
-#       - "docker-compose.yml"
+#     branches: ["main"]
+
+on:
+  push:
+    paths:
+      - "donatio-django/**"
+      - "donatio-chatbot/**"
+      - "donatio-kpay/**"
+      - "docker-compose.yml"
+  pull_request:
+    paths:
+      - "donatio-django/**"
+      - "donatio-chatbot/**"
+      - "donatio-kpay/**"
+      - "docker-compose.yml"
 
 jobs:
   build:
