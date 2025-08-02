@@ -35,11 +35,16 @@ jobs:
 
       - name: Build Django Backend Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/donatio:backend_latest ./donatio-django
+           docker build \
+            --build-arg GOOGLE_APP_PASSWORD="${{ secrets.GOOGLE_APP_PASSWORD }}" \
+            --build-arg GOOGLE_CLIENT_ID="${{ secrets.GOOGLE_CLIENT_ID }}" \
+            -t htayhtaythwe717/donatio:backend_latest ./donatio-django
 
       - name: Build Chatbot Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/donatio:chatbot_latest ./donatio-chatbot
+          docker build \
+          --build-arg GROQ_API_KEY="${{ secrets.GROQ_API_KEY }}" \
+          -t ${{ secrets.DOCKER_USERNAME }}/donatio:chatbot_latest ./donatio-chatbot
 
       # - name: Build KPay Image
       #   run: |

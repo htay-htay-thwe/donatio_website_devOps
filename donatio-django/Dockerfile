@@ -12,6 +12,12 @@ RUN echo "deb http://mirrors.aliyun.com/debian bookworm main contrib non-free no
 # Install uv
 RUN pip install --no-cache-dir uv
 
+ARG GOOGLE_APP_PASSWORD
+ARG GOOGLE_CLIENT_ID
+
+ENV GOOGLE_APP_PASSWORD=$GOOGLE_APP_PASSWORD
+ENV GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID
+
 # Copy and install dependencies
 COPY pyproject.toml .
 RUN uv sync

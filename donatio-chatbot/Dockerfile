@@ -5,6 +5,10 @@ WORKDIR /app
 # Copy project files *before* syncing deps
 COPY requirements.txt .
 
+ARG GROQ_API_KEY
+
+ENV GROQ_API_KEY=$GROQ_API_KEY
+
 RUN pip install -r requirements.txt
 
 # Copy the rest of your code
