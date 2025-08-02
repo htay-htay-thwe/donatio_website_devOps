@@ -54,12 +54,12 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/donatio:backend_latest
           docker push ${{ secrets.DOCKER_USERNAME }}/donatio:chatbot_latest
 
-      # Optional: Install docker-compose if you want to run containers here
-      - name: Set up Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install docker-compose -y
+   
+      # - name: Set up Docker Compose
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install docker-compose -y
 
       - name: Run Containers
         run: |
-          docker compose -f ./docker-compose.yml up -d
+          docker compose up -d
