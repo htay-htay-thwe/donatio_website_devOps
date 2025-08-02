@@ -15,7 +15,7 @@ services:
       - "5432:5432"
 
   donatio_backend:
-    build: ./donatio-django
+    image: htayhtaythwe717/donatio:backend_latest
     container_name: donatio-backend
     ports: 
       - "8000:8000"
@@ -28,7 +28,7 @@ services:
 
 
   donatio_chatbot:
-    build: ./donatio-chatbot
+    image: htayhtaythwe717/donatio:chatbot_latest
     container_name: donatio-chatbot
     ports:
       - "8001:8001"
@@ -39,15 +39,15 @@ services:
     depends_on: 
       - db
 
-  donatio_kpay:
-    build: ./donatio-kpay
-    container_name: donatio-kpay
-    ports:
-      - "8002:8002"
-    volumes:
-      - ./donatio-kpay:/app
-    depends_on: 
-      - db
+  # donatio_kpay:
+  #   build: ./donatio-kpay
+  #   container_name: donatio-kpay
+  #   ports:
+  #     - "8002:8002"
+  #   volumes:
+  #     - ./donatio-kpay:/app
+  #   depends_on: 
+  #     - db
       
 volumes:
   postgres_data:
