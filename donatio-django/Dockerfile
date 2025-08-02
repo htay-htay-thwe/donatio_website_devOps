@@ -2,15 +2,7 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Replace sources.list with Aliyun mirror for Debian 12 (Bookworm)
-RUN echo "deb http://mirrors.aliyun.com/debian bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/debian bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
-    apt-get update && apt-get install -y --no-install-recommends libzbar0 && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install uv
-RUN pip install --no-cache-dir uv
+RUN apt-get update && apt-get install -y --no-install-recommends libzbar0 && rm -rf /var/lib/apt/lists/*
 
 ARG GOOGLE_APP_PASSWORD
 ARG GOOGLE_CLIENT_ID
@@ -18,12 +10,12 @@ ARG GOOGLE_CLIENT_ID
 ENV GOOGLE_APP_PASSWORD=$GOOGLE_APP_PASSWORD
 ENV GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID
 
-# Copy and install dependencies
-COPY pyproject.toml .
-RUN uv sync
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "uv run manage.py boom"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
