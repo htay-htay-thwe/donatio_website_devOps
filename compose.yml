@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   db:
     image: postgres:latest
@@ -15,17 +17,18 @@ services:
   donatio_backend:
     image: htayhtaythwe717/donatio:backend_latest
     container_name: donatio-backend
-    ports: 
+    ports:
       - "8000:8000"
     volumes:
       - ./donatio-django:/app
-    env_file:
-      - ./donatio-django/.env
-    environment: 
+    environment:
+      DEBUG: "1"
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_APP_PASSWORD: ${GOOGLE_APP_PASSWORD}
       DATABASE_URL: postgresql://postgres:postgres@db:5432/donatio
-    depends_on: 
+    depends_on:
       - db
-
 
   donatio_chatbot:
     image: htayhtaythwe717/donatio:chatbot_latest
@@ -34,11 +37,10 @@ services:
       - "8001:8001"
     volumes:
       - ./donatio-chatbot:/app
-    env_file:
-      - ./donatio-chatbot/.env
-    environment: 
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY}
       DATABASE_URL: postgresql://postgres:postgres@db:5432/donatio
-    depends_on: 
+    depends_on:
       - db
 
   # donatio_kpay:
