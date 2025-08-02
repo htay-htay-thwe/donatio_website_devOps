@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   db:
     image: postgres:latest
@@ -22,7 +20,7 @@ services:
     volumes:
       - ./donatio-django:/app
     env_file:
-      - .env
+      - ./donatio-django/.env
     environment: 
       DATABASE_URL: postgresql://postgres:postgres@db:5432/donatio
     depends_on: 
@@ -37,7 +35,7 @@ services:
     volumes:
       - ./donatio-chatbot:/app
     env_file:
-      - .env
+      - ./donatio-chatbot/.env
     environment: 
       DATABASE_URL: postgresql://postgres:postgres@db:5432/donatio
     depends_on: 
