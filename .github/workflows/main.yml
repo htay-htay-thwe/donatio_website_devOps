@@ -49,3 +49,5 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           docker compose up -d
+
+# update 
