@@ -23,7 +23,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: DOCKER_USERNAME
+    environment: DOCKER
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -54,3 +54,12 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/donatio:chatbot_latest
 
         # docker push ${{ secrets.DOCKER_USERNAME }}/donatio-kpay
+      
+      # - name: Set up Docker Compose
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install docker-compose -y
+
+      # - name: Build and run containers
+      #   run: |
+      #     docker-compose up -d --build
